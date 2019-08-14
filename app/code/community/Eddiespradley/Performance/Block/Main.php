@@ -222,7 +222,7 @@ class Eddiespradley_Performance_Block_Main extends Mage_Core_Block_Template
 	    
 	           $total++;
 	           
-	           if($value['codePool'] == "core" && $value['active'] === 'true')
+	           if(@$value['codePool'] == "core" && $value['active'] === 'true')
 	               $core_active++;
 	               
 	           ($value['active'] === "true" ? $active++ : $inactive++ );
@@ -266,6 +266,8 @@ class Eddiespradley_Performance_Block_Main extends Mage_Core_Block_Template
 	       
 
 	   }
+	   
+
 
 
 }

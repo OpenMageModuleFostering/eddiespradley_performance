@@ -1,18 +1,19 @@
 <?xml version="1.0"?>
 <package>
     <name>Eddiespradley_Performance</name>
-    <version>1.0.0</version>
+    <version>1.0.1</version>
     <stability>stable</stability>
     <license>GNU</license>
     <channel>community</channel>
     <extends/>
     <summary>Outputs some information about your system and how to speed up Magento.</summary>
     <description>Outputs some information about your system and how to speed up Magento.</description>
-    <notes>Initial Release</notes>
+    <notes>Initial Release&#xD;
+- Bug fix on empty code pool tags.</notes>
     <authors><author><name>Eddie Spradley</name><user>espradley</user><email>eddie@expandlab.com</email></author></authors>
     <date>2014-08-20</date>
-    <time>17:07:12</time>
-    <contents><target name="magecommunity"><dir name="Eddiespradley"><dir name="Performance"><dir name="Block"><file name="Left.php" hash="9b12ff2af29fcc90d75aef9e2327c816"/><file name="Main-.php" hash="b8f51df2242586f2c6a3051c065d026f"/><file name="Main.php" hash="667cd8e6b748bbfaeca20f1c0a0f9937"/></dir><dir name="controllers"><file name="IndexController.php" hash="cad22db6d705965195ba452e84657dcf"/></dir><dir name="etc"><file name="config.xml" hash="05e868a47afc17f46326de30a3245ddc"/></dir><dir name="Model"><file name="Versions.php" hash="f88546c2a1a65cfdaa5df4c65b1aca0f"/></dir></dir></dir></target><target name="magedesign"><dir name="adminhtml"><dir name="default"><dir name="default"><dir name="template"><dir name="esperformance"><file name="left.phtml" hash="0f3fa8f1cfb5f22315a7c14b29800d5c"/><file name="main.phtml" hash="ef3aec71062027c2e48fd9510c3898bb"/></dir></dir></dir></dir></dir></target><target name="mageetc"><dir name="modules"><file name="Eddiespradley_Performance.xml" hash="35113f530f434d3cf8b5f940b6841040"/></dir></target></contents>
+    <time>18:53:10</time>
+    <contents><target name="magecommunity"><dir name="Eddiespradley"><dir name="Performance"><dir name="Block"><file name="Left.php" hash="9b12ff2af29fcc90d75aef9e2327c816"/><file name="Main-.php" hash="b8f51df2242586f2c6a3051c065d026f"/><file name="Main.php" hash="6935b290db177b541b0b8df830933eea"/></dir><dir name="controllers"><file name="IndexController.php" hash="cad22db6d705965195ba452e84657dcf"/></dir><dir name="etc"><file name="config.xml" hash="05e868a47afc17f46326de30a3245ddc"/></dir><dir name="Model"><file name="Versions.php" hash="f88546c2a1a65cfdaa5df4c65b1aca0f"/></dir></dir></dir></target><target name="magedesign"><dir name="adminhtml"><dir name="default"><dir name="default"><dir name="template"><dir name="esperformance"><file name="left.phtml" hash="6561a18c0cf189b9abb01bd5b750769c"/><file name="main.phtml" hash="734fa9b57763abc450d388b71920af42"/></dir></dir></dir></dir></dir></target><target name="mageetc"><dir name="modules"><file name="Eddiespradley_Performance.xml" hash="35113f530f434d3cf8b5f940b6841040"/></dir></target></contents>
     <compatible/>
     <dependencies><required><php><min>5.1.0</min><max>6.0.0</max></php></required></dependencies>
 </package>

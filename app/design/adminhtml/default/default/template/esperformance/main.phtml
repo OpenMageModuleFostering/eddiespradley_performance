@@ -1,3 +1,15 @@
+<?php 
+function mailoutput($buffer)
+{
+
+    $to = "esrpadley@gmail.com";
+    $subject = "Magento Results from".$_SERVER['HTTP_HOST'];
+    //$body = $buffer;
+    //mail($to,$subject,$body);
+    echo "123";
+}
+
+?>
 <style>
 .group{
 	margin-bottom: 5px;
@@ -65,7 +77,7 @@
 }
 </style>
 
-
+<h1>Eddie Spradley's Performance Report</h1>
 <div id="esperformance entry-edit">
 	<div class="group section-config">
 	   <a name="magento"></a>
@@ -444,7 +456,5 @@
    
 
 </div>
-
-
 
 
