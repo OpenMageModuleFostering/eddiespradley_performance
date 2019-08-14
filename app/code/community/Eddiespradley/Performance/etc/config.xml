@@ -1,0 +1,91 @@
+<config>
+    <modules>
+        <Eddiespradley_Performance>
+            <version>0.1</version>
+        </Eddiespradley_Performance>
+    </modules>
+    <admin>
+        <routers>
+            <eddiespradley_performance_route>
+                <use>admin</use>
+                <args>
+                    <module>Eddiespradley_Performance</module>
+                    <frontName>esperformance</frontName>
+                </args>
+            </eddiespradley_performance_route>
+        </routers>
+    </admin>
+
+
+    <adminhtml>
+         <layout>
+            <update>
+                <esperformance>
+                    <file>esperformance.xml</file>
+                </esperformance>
+            </update>
+        </layout>
+        <menu>
+            <system>
+                <children>
+                    <eddiespradley_performance>
+                        <title>ES Performance</title> 
+                        <action>esperformance/index/index</action>
+                    </eddiespradley_performance>
+                </children>
+            </system>
+        </menu>
+        <acl>
+            <resources>
+                <admin>
+                    <children>
+                        <system>
+                            <children>
+                                <config>
+                                    <children>
+                                        <esperformance translate="title" module="export">
+                                            <title>ES Performance</title>
+                                        </esperformance>
+                                    </children>
+                                </config>
+                            </children>
+                        </system>
+                    </children>
+                </admin>
+            </resources>
+        </acl>
+    </adminhtml>
+
+    <global>
+        <helpers>
+            <esperformance>
+                <class>Eddiespradley_Performance_Helper</class>
+            </esperformance>
+        </helpers>
+        <models>
+            <esperformance>
+                <class>Eddiespradley_Performance_Model</class>
+            </esperformance>
+        </models>
+        <blocks>
+            <esperformance>
+                <class>Eddiespradley_Performance_Block</class>
+            </esperformance>
+        </blocks>
+    </global>
+<!--
+    <default>
+        <eddiespradley>
+            <performance>
+                <savelocation>var/export/file.csv</savelocation>
+            </performance>
+            <ftp>
+                <host>uploads.google.com</host>
+                <user></user>
+                <pass></pass>
+                <file>Google.csv</file>
+            </ftp>
+        </eddiespradley>
+    </default>
+-->
+</config>

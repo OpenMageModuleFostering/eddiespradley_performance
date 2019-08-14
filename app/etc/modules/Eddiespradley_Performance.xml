@@ -1,0 +1,8 @@
+<config>
+    <modules>
+        <Eddiespradley_Performance>
+            <active>true</active>
+            <codePool>community</codePool>
+        </Eddiespradley_Performance>
+    </modules>
+</config>

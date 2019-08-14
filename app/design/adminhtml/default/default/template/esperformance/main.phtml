@@ -1,0 +1,450 @@
+<style>
+.group{
+	margin-bottom: 5px;
+	border: 1px solid #d6d6d6;
+}
+.row{
+
+	background-color: #fafafa;
+	padding: 5px;
+	padding-left: 10px;
+
+}
+.row.title{
+	font-size: 15px;
+	background-color: #6f8992;
+	font: 12px/1.5em Arial, Helvetica, sans-serif;
+	color: white;
+	border-bottom: 1px solid #d6d6d6;
+	padding:3px;
+	font-weight: bold;
+	padding-left: 5px;
+	
+}
+.head{
+	font-weight: bold;
+}
+.row1{
+	float: left;
+	width: 15%;
+}
+
+.row2{
+	float: left;
+	width: 10%;
+}
+
+.row3{
+	float: left;
+
+}
+
+.row4{
+	float: left;
+
+}
+
+.row2.wide{
+	width: auto;
+}
+
+#esperformance{
+	width: 70%;	
+}
+
+.clear{
+	clear: both;
+}
+
+.title .link{
+	float:right;
+	color: white;
+}
+.title .link a{
+    color: white;
+}
+</style>
+
+
+<div id="esperformance entry-edit">
+	<div class="group section-config">
+	   <a name="magento"></a>
+		<div class="row title entry-edit-head">
+			Magento Version
+		</div>
+		<div class="row">
+			<?php echo Mage::getEdition(); ?> (<?php echo Mage::getVersion(); ?>)
+		</div>
+    </div>
+	<div class="group">
+	   <a name="php"></a>
+		<div class="row title">
+			PHP Information
+		</div>
+		<div class="row">
+			<div class="row1">&nbsp;</div> 
+			<div class="row2 head">Current</div>
+			<div class="row3 head">Recommended</div>
+			<div class="clear"></div>
+		</div>
+		<div class="row">
+			<div class="row1">Version: </div> 
+			<div class="row2"><?php echo $this->getPhpVersion(); ?></div>
+			<div class="row3">Latest Supported Version (current 5.4 with patch)</div>
+			<div class="clear"></div>
+		</div>
+
+		<div class="row">
+			<div class="row1">Memory Limit: </div> 
+			<div class="row2"><?php echo $this->getPhpMemory(); ?></div>
+			<div class="row3">20-40% of your total memory</div>
+			<div class="clear"></div>
+		</div>
+		<div class="row">
+			<div class="row1">PHP Max Input Vars: </div> 
+			<div class="row2"><?php echo $this->getPhpInputVars(); ?></div>
+			<div class="row3">Consult with Host</div>
+			<div class="clear"></div>
+			<div class="clear"></div>
+		</div>
+    </div>
+
+	<div class="group">
+	   <a name="mysql"></a>
+		<div class="row title">
+			MySQL Information
+		</div>
+		<div class="row">
+			<div class="row1">&nbsp;</div> 
+			<div class="row2 head">Current</div>
+			<div class="row3 head">Recommended</div>
+			<div class="clear"></div>
+		</div>
+		<div class="row">
+		 	<div class="row1">Version: </div> 
+		 	<div class="row2"><?php echo $this->getMysqlVersion(); ?></div>
+		 	<div class="row3">Latest Version</div>
+			<div class="clear"></div>
+		</div>
+		<div class="row">
+		 	<div class="row1">Is Percona: </div> 
+		 	<div class="row2"><?php echo ($this->isPercona() ? "yes" : "no" ); ?></div>
+		 	<div class="row3">yes</div>
+			<div class="clear"></div>
+		</div>
+    </div>
+
+	<div class="group">
+	    <a name="web"></a>
+		<div class="row title">
+			Web Server
+		</div>
+		<div class="row">
+			<div class="row1">&nbsp;</div> 
+			<div class="row2 head">Current</div>
+			<div class="row3 head">Recommended</div>
+			<div class="clear"></div>
+		</div>
+		<div class="row">
+			<div class="row1">Type:</div> 
+			<div class="row2"><?php /*echo $this->getServerType();*/ ?> <?php echo $_SERVER['SERVER_SOFTWARE']; ?></div>
+			<div class="row3">Apache (2.2.x) or Nginx latest version</div>
+			<div class="clear"></div>
+		</div>
+    </div>
+    <div class="group">
+          <a name="module"></a>
+         <div class="row title">
+			Module Information
+		</div>
+		<div class="row">
+			<div class="row1">&nbsp;</div> 
+			<div class="row2 head">Current</div>
+			<div class="row3 head">Recommended</div>
+			<div class="clear"></div>
+		</div>
+    		<?php
+                $modules =  $this->getModulesInfo();
+    		?>
+       	<div class="row">
+			<div class="row1">Total Installed:</div>
+			<div class="row2"><?php echo $modules['installed']; ?></div>
+			<div class="row3">N/A</div>
+			<div class="clear"></div> 
+    	</div>
+    	<div class="row">
+			<div class="row1">Core (active): </div>
+            <div class="row2"><?php echo $modules['core_active']; ?></div>
+            <div class="row3"><?php echo $modules['core_active']; ?></div>
+			<div class="clear"></div> 
+    	</div>
+    	<div class="row">
+			<div class="row1">Third Party (active)</div>
+            <div class="row2"><?php echo $modules['total_active'] - $modules['core_active']; ?></div>
+			<div class="row3">< 5 (or as little as possible)</div>
+			<div class="clear"></div> 
+    	</div>
+    	<div class="row">
+			<div class="row1">Total Inactive: </div>
+            <div class="row2"><?php echo $modules['inactive']; ?></div>
+            <div class="row3">Remove these.</div>
+			<div class="clear"></div> 
+    	</div>
+    </div>
+    <div class="group">
+        <a name="cdn"></a>
+         <div class="row title">
+			CDN Detection:
+		</div>
+		<div class="row">
+			<div class="row1">&nbsp;</div> 
+			<div class="row2 head">Current</div>
+			<div class="row3 head">Recommended</div>
+			<div class="clear"></div>
+		</div>
+    		<?php
+                $cdn =  $this->detectCdn();
+    		?>
+       	<div class="row">
+			<div class="row1">Media CDN:</div>
+			<div class="row2"><?php echo $cdn['media']; ?></div>
+			<div class="row3">Enable CDN Service (<a href="http://ref.metacdn.com/7Z2Vv" target="_blank">MetaCDN</a>)</div>
+			<div class="clear"></div> 
+    	</div>
+    	<div class="row">
+			<div class="row1">CSS/Skin: </div>
+            <div class="row2"><?php echo $cdn['skin']; ?></div>
+            <div class="row3">Enable CDN Service (<a href="http://ref.metacdn.com/7Z2Vv" target="_blank">MetaCDN</a>)</div>
+            
+			<div class="clear"></div> 
+    	</div>
+    	<div class="row">
+			<div class="row1">JS: </div>
+            <div class="row2"><?php echo $cdn['js']; ?></div>
+            <div class="row3">Enable CDN Service (<a href="http://ref.metacdn.com/7Z2Vv" target="_blank">MetaCDN</a>)</div>
+			<div class="clear"></div> 
+    	</div>
+    </div>
+    <div class="group">
+        <a name="cpu"></a>
+       	<div class="row title">
+			CPU Information
+		</div>
+		<div class="row">
+			<div class="row1">&nbsp;</div> 
+			<div class="row2 head">Current</div>
+			<div class="row3 head">Recommended</div>
+			<div class="clear"></div>
+		</div>
+		<?php 
+		  $cpu = $this->getCPU();
+		?>
+    	<div class="row">
+    		<div class="row1">Average (1 min):</div>
+			<div class="row2"><?php echo $cpu[0]; ?></div>
+			<div class="row3">< <?php echo $this->getCPUs(); ?></div>
+			<div class="clear"></div> 
+			 
+		</div>
+		<div class="row">
+			<div class="row1">Average (5 min):</div>
+			<div class="row2"><?php echo $cpu[1]; ?></div>
+			<div class="row3">< <?php echo $this->getCPUs(); ?></div>
+			<div class="clear"></div> 
+		</div>
+		<div class="row">
+			<div class="row1">Average (15 min):</div>
+			<div class="row2"><?php echo $cpu[2]; ?></div>
+			<div class="row3">< <?php echo $this->getCPUs(); ?></div>
+			<div class="clear"></div> 
+		</div>
+		<div class="row"> 
+			<div class="row1"># of CPUs:</div>
+			<div class="row2"><?php echo $this->getCPUs(); ?></div>
+			<div class="row3">Requires Analysis</div>
+			<div class="clear"></div> 
+		</div>
+    </div>
+     <div class="group">
+        <a name="database"></a>
+         <div class="row title">
+			Database Size
+		</div>
+		<div class="row">
+			<div class="row1">&nbsp;</div> 
+			<div class="row2 head">Current</div>
+			<div class="row3 head">Recommended</div>
+			<div class="clear"></div>
+		</div>
+    		<?php
+    			foreach($this->getDatabaseSize() as $db)
+    			{
+    				?>
+    				<div class="row">
+    					<div class="row1"><?php echo $db['name']; ?></div>
+    					<div class="row2"><?php echo $this->transformBytes($db['value']); ?></div>
+    					<div class="row3"> < 700MB </div>
+    					<div class="clear"></div> 
+    				</div>
+    				<?php
+    			}
+
+    		?>
+    </div>
+    <div class="group">
+        <a name="disk"></a>
+   		<div class="row title">
+			Disk Space
+		</div>
+		<div class="row">
+			<div class="row1">&nbsp;</div> 
+			<div class="row2 head">Current</div>
+			<div class="row3 head">Recommended</div>
+			<div class="clear"></div>
+		</div>
+    	<div class="row">
+    		<div class="row1">Total:</div>
+			<div class="row2"><?php echo $this->getTotalDiskSpace(); ?></div>
+			<div class="row3">N/A</div>
+			<div class="clear"></div> 
+		</div>
+		<div class="row">
+    		<div class="row1">Used:</div>
+			<div class="row2"><?php echo $this->getTotalDiskSpace() - $this->getFreeDiskSpace(); ?></div>
+			<div class="row3">N/A</div>
+			<div class="clear"></div> 
+		</div>
+		<div class="row">
+		    <div class="row1">Free:</div>
+			<div class="row2"><?php echo $this->getFreeDiskSpace(); ?></div>
+			<div class="row3">N/A</div>
+			<div class="clear"></div> 
+		</div>
+		<div class="row">
+    		<div class="row1">Used Percent:</div>
+			<div class="row2"><?php echo number_format((1-($this->getFreeDiskSpace() / $this->getTotalDiskSpace())) * 100, 2);  ?>%</div>
+			<div class="row3">Low as possible</div>
+			<div class="clear"></div> 
+		</div>
+    </div>
+    
+    <div class="group">
+        <a name="var"></a>
+        <div class="row title">
+			Var Directory
+		</div>
+		<div class="row">
+			<div class="row1">&nbsp;</div> 
+			<div class="row2 head">Current:</div>
+			<div class="row3 head">Recommended:</div>
+			<div class="clear"></div>
+		</div>
+    	<div class="row">
+			<div class="row1">Size</div>
+			<div class="row2"><?php echo $this->getDirectorySize(Mage::getBaseDir('var')); ?> </div>
+			<div class="row3">< 1GB</div>
+			<div class="clear"></div> 
+		</div>
+    </div>
+    <div class="group">
+        <a name="session"></a>
+        <div class="row title">
+			Session Storage
+		</div>
+		<div class="row">
+			<div class="row1">&nbsp;</div> 
+			<div class="row2 head">Current:</div>
+			<div class="row3 head">Recommended:</div>
+			<div class="clear"></div>
+		</div>
+    	<div class="row">
+			<div class="row1">Type</div>
+			<div class="row2"><?php echo Mage::getConfig()->getNode('global/session_save')->{0}; ?> </div>
+			<div class="row3">Memcached (or related).</div>
+			<div class="clear"></div> 
+		</div>
+    </div>
+    <div class="group">
+        <a name="backend"></a>
+        <div class="row title">
+			Backend Cache Type 
+		</div>
+		<div class="row">
+			<div class="row1">&nbsp;</div> 
+			<div class="row2 head">Current</div>
+			<div class="row3 head">Recommended</div>
+			<div class="clear"></div>
+		</div>
+    	<div class="row">
+			<div class="row1">Type</div>
+			<div class="row2"><?php echo (@Mage::getConfig()->getNode('global/cache/backend')->{0} ? Mage::getConfig()->getNode('global/cache/backend')->{0} : "not in use"); ?> </div>
+			<div class="row3">Redis (or similar)</div>
+			<div class="clear"></div> 
+		</div>
+    </div>
+    <div class="group">
+        <a name="magentoc"></a>
+       	<div class="row title">
+			Magento Cache
+		</div>
+	    <div class="row">
+			<div class="row1 head">Type</div> 
+			<div class="row2 head">Current</div>
+			<div class="row3 head">Recommended</div>
+			<div class="clear"></div>
+		</div>
+	<?php
+        foreach(Mage::app()->getCacheInstance()->getTypes() as $cache)
+    	{	
+    ?>
+    	<div class="row">
+    	
+			<div class="row1"><?php echo $cache->getId(); ?></div>
+			<div class="row2"><?php echo ($cache->getStatus() ? 'Enabled' : 'Disabled' ); ?></div>
+			<div class="row3">Enabled</div>
+			<div class="clear"></div> 
+		</div>
+	<?php
+		}
+	?>
+    </div>
+
+    <div class="group">
+         <a name="log"></a>
+         <div class="row title">
+			Log Rotation <span class="link"><a href="http://www.eddiespradley.com/magento-speed-tip-disabling-database-logging/" target="_blank">[Learn More]</a></span>
+		</div>
+		<div class="row">
+			<div class="row1 head">&nbsp;</div> 
+			<div class="row2 head">Current</div>
+			<div class="row3 head">Recommended</div>
+			<div class="clear"></div>
+		</div>
+    	<div class="row">
+    		<div class="row1">Status:</div>
+			<div class="row2"><?php echo (Mage::getStoreConfig('system/log/enabled') ? 'On' : 'Off' ); ?></div>
+			<div class="row3">on</div>
+			<div class="clear"></div> 
+  
+    	</div>
+    	<div class="row">
+    	    <div class="row1">Log Rotation Threshold:</div>
+			<div class="row2"><?php echo Mage::getStoreConfig('system/log/clean_after_day') . ' ' . Mage::getStoreConfig('system/log/frequency');  ?></div>
+			<div class="row3">1d or turn off logging. </div>
+			<div class="clear"></div> 
+    	</div>
+    </div>
+
+   
+    
+  
+    
+    
+    
+   
+
+</div>
+
+
+
+
