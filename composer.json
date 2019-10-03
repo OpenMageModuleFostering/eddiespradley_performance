@@ -1,16 +1,19 @@
 {
-    "name": "OpenMageModuleFostering/Eddiespradley_Performance",
+    "name": "OpenMageModuleFostering\/Eddiespradley_Performance",
     "type": "magento-module",
     "license": "GNU",
     "homepage": "",
     "description": "Outputs some information about your system and how to speed up Magento.",
     "authors": [
-    {
-        "name": "Eddie Spradley",
-        "email": "eddie@expandlab.com"
-    }
-],
+        {
+            "name": "Eddie Spradley",
+            "email": "eddie@expandlab.com"
+        }
+    ],
     "suggest": {
-        "magento-hackathon/magento-composer-installer": "*"
-    }
+        "magento-hackathon\/magento-composer-installer": "*"
+    },
+    "keywords": [
+        "openmage-module"
+    ]
 }
